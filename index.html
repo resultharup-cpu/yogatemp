@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kartavya Yoga — Book classes with Priya Chaudhary. Vinyasa, Hatha, Yin, Restorative, Pranayama & Meditation in an authentic, grounded practice.">
+  <meta name="theme-color" content="#C8760A">
+  <title>Kartavya Yoga — Breathe. Flow. Awaken.</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Caveat:wght@700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js" defer></script>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE LOADER
+     ============================================================ -->
+<div id="page-loader" class="page-loader" aria-live="polite">
+  <svg class="loader-logo" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+    <path d="M50 4 L58 6 L65 4 L73 9 L80 14 L86 21 L91 29 L94 38 L95 48 L93 58 L88 67 L81 75 L72 81 L62 86 L51 88 L41 87 L31 83 L22 76 L15 67 L10 57 L7 46 L8 36 L12 26 L18 18 L26 11 L34 7 L43 5 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M50 70 L45 53 L50 33 L55 53 Z M50 70 L34 58 L28 43 L44 55 Z M50 70 L66 58 L72 43 L56 55 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M50 70 L50 84 M50 78 L34 73 L38 82 M50 78 L66 73 L62 82" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="round"/>
+  </svg>
+  <span class="loader-text">Loading Kartavya…</span>
+</div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav id="main-nav" class="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a class="nav-logo" data-page="home" href="#home" aria-label="Kartavya Yoga Home">
+      <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <path d="M50 4 L58 6 L65 4 L73 9 L80 14 L86 21 L91 29 L94 38 L95 48 L93 58 L88 67 L81 75 L72 81 L62 86 L51 88 L41 87 L31 83 L22 76 L15 67 L10 57 L7 46 L8 36 L12 26 L18 18 L26 11 L34 7 L43 5 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M50 70 L45 53 L50 33 L55 53 Z M50 70 L34 58 L28 43 L44 55 Z M50 70 L66 58 L72 43 L56 55 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M50 70 L50 84 M50 78 L34 73 L38 82 M50 78 L66 73 L62 82" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/>
+      </svg>
+      <span class="nav-logo-text">KARTA<span>VYA</span></span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="nav-links" role="list">
+      <li><a class="nav-link" data-page="home"      href="#home"      role="link">Home</a></li>
+      <li><a class="nav-link" data-page="classes"   href="#classes"   role="link">Classes</a></li>
+      <li><a class="nav-link" data-page="book"      href="#book"      role="link">Book</a></li>
+      <li><a class="nav-link hidden" id="nav-dash-link"  data-page="dashboard" href="#dashboard">My Bookings</a></li>
+      <li><a class="nav-link hidden" id="nav-admin-link" data-page="admin"     href="#admin">Admin</a></li>
+    </ul>
+
+    <!-- Actions -->
+    <div class="nav-actions">
+      <span class="tech-text hide-mobile" id="nav-user-name" style="color:var(--color-primary)" aria-hidden="true"></span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+      <button class="btn btn-primary btn-sm glitch-btn" id="nav-login-btn" data-page="login" aria-label="Log in">LOG IN</button>
+      <button class="btn btn-outline btn-sm hidden" id="nav-logout-btn" aria-label="Log out">SIGN OUT</button>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Mobile menu">
+  <a class="nav-link" data-page="home"      href="#home">Home</a>
+  <a class="nav-link" data-page="classes"   href="#classes">Classes</a>
+  <a class="nav-link" data-page="book"      href="#book">Book a Class</a>
+  <a class="nav-link" id="mob-dash-link"    data-page="dashboard" href="#dashboard">My Bookings</a>
+  <a class="nav-link" id="mob-admin-link"   data-page="admin"     href="#admin">Admin Panel</a>
+  <a class="nav-link" data-page="login"     href="#login">Log In</a>
+  <button class="theme-toggle" id="theme-toggle-mobile" style="width:100%;justify-content:flex-start;gap:0.5rem;padding:0.75rem" aria-label="Toggle dark mode">◐ Toggle Theme</button>
+</div>
+
+<!-- ============================================================
+     TICKER BANNER
+     ============================================================ -->
+<div id="ticker-banner" class="ticker-banner" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">YOGA</span>
+    <span class="ticker-item">FLOW</span>
+    <span class="ticker-item">BREATHE</span>
+    <span class="ticker-item">2026</span>
+    <span class="ticker-item">AWAKEN</span>
+    <span class="ticker-item">ALIGN</span>
+    <span class="ticker-item">HATHA</span>
+    <span class="ticker-item">VINYASA</span>
+    <span class="ticker-item">YIN</span>
+    <span class="ticker-item">PRANAYAMA</span>
+    <span class="ticker-item">PRIYA CHAUDHARY</span>
+    <span class="ticker-item">BOOK NOW</span>
+    <span class="ticker-item">KARTAVYA</span>
+    <span class="ticker-item">MEDITATION</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     MAIN CONTENT
+     ============================================================ -->
+<main id="main-content">
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE: HOME (#home)
+       ══════════════════════════════════════════════════════ -->
+  <section id="page-home" class="page" aria-label="Home">
+
+    <!-- Hero Section -->
+    <div class="hero-section halftone">
+      <!-- Ghost text collage layer (behind everything) -->
+      <div class="hero-ghost-layer" aria-hidden="true">
+        <span class="hero-ghost-word ghost-1">BREATHE</span>
+        <span class="hero-ghost-word ghost-2">FLOW</span>
+      </div>
+
+      <!-- Floating technical annotations -->
+      <span class="hero-float-annotation" style="top:22%;right:12%;transform:rotate(4deg) translate(0,0)" aria-hidden="true">B1 ↗</span>
+      <span class="hero-float-annotation" style="top:58%;left:4%;transform:rotate(-3deg)" aria-hidden="true">L2 →</span>
+      <span class="hero-float-annotation" style="top:38%;right:28%;transform:rotate(1deg)" aria-hidden="true">S3</span>
+
+      <!-- Scratch lines -->
+      <div class="hero-scratch-line diagonal" style="width:90px;top:28%;right:10%" aria-hidden="true"></div>
+      <div class="hero-scratch-line" style="width:60px;bottom:25%;left:3%;transform:rotate(8deg)" aria-hidden="true"></div>
+
+      <!-- Background watermarks -->
+      <div class="hero-bg-watermark botanical-watermark" aria-hidden="true">
+        <span class="sanskrit sanskrit-1">योग</span>
+        <span class="sanskrit sanskrit-2">शान्ति</span>
+        <object data="assets/botanical-mandala.svg" class="wm-1" type="image/svg+xml" aria-hidden="true"></object>
+        <object data="assets/botanical-leaf.svg" class="wm-2" type="image/svg+xml" aria-hidden="true"></object>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-eyebrow">Grounded Earth Yoga · Est. 2019</div>
+
+        <div class="hero-title-block">
+          <h1 class="hero-title ink-bleed ink-drip-anim">
+            <span class="hero-title-line jitter">BREATHE</span>
+            <span class="hero-title-line jitter-slow" style="color:var(--color-primary);padding-left:clamp(1rem,4vw,4rem)">AWAKEN</span>
+          </h1>
+        </div>
+
+        <!-- Caveat script overlay -->
+        <div class="hero-subtitle-block">
+          <span class="hero-subtitle-line"></span>
+          <p class="hero-subtitle jitter-slow">with Priya Chaudhary</p>
+        </div>
+
+        <!-- SVG script draw-on words -->
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+          <defs>
+            <path id="script-breathe-path" d="M 10 50 C 20 10, 60 10, 80 30 C 110 60, 80 90, 50 80 C 20 70, 10 50, 30 40" stroke="#C8760A" stroke-width="2" fill="none" class="script-draw-path" stroke-dasharray="300" stroke-dashoffset="300"/>
+          </defs>
+        </svg>
+
+        <div class="hero-cta-group">
+          <button class="btn btn-primary btn-lg glitch-btn" data-page="book" id="hero-book-cta" aria-label="Book a class">
+            ◎ BOOK A CLASS
+          </button>
+          <button class="btn btn-outline btn-lg" data-page="classes" aria-label="Browse classes">
+            VIEW SCHEDULE
+          </button>
+          <span class="hero-annotation">B1 · Certified 500hr RYT</span>
+        </div>
+
+        <!-- Stats row -->
+        <div class="flex flex-wrap gap-lg mt-xl" style="border-top:1px solid var(--border-color);padding-top:var(--space-lg)">
+          <div>
+            <div class="section-heading" style="font-size:2rem;color:var(--color-primary)">500+</div>
+            <div class="tech-text">Students Taught</div>
+          </div>
+          <div>
+            <div class="section-heading" style="font-size:2rem">6</div>
+            <div class="tech-text">Class Styles</div>
+          </div>
+          <div>
+            <div class="section-heading" style="font-size:2rem;color:var(--color-secondary)">7yr</div>
+            <div class="tech-text">Practicing</div>
+          </div>
+          <div>
+            <div class="section-heading" style="font-size:2rem;color:var(--color-gold)">500hr</div>
+            <div class="tech-text">RYT Certified</div>
+          </div>
+        </div>
+      </div><!-- /container -->
+    </div><!-- /hero-section -->
+
+    <!-- Torn divider -->
+    <div class="torn-divider" aria-hidden="true"></div>
+
+    <!-- Upcoming Classes Preview -->
+    <section class="page-section" aria-labelledby="home-classes-heading">
+      <div class="section-watermark top-right" aria-hidden="true">
+        <object data="assets/botanical-lotus.svg" type="image/svg+xml"></object>
+      </div>
+      <div class="container section-content">
+        <div class="section-reveal">
+          <p class="section-label">On The Mat</p>
+          <h2 class="section-heading ink-bleed channel-split" id="home-classes-heading">Upcoming Classes</h2>
+          <p class="text-muted mt-sm" style="margin-bottom:var(--space-lg);max-width:520px;font-size:0.9rem">
+            Each session is a portal — from wherever you are, into presence. Show up. Breathe. The rest follows.
+          </p>
+        </div>
+        <div class="grid-3" id="home-upcoming-classes">
+          <!-- Rendered by app.js KartavyaHome.renderUpcomingClasses() -->
+          <div class="class-card-skeleton"><div class="skeleton sk-header"></div><div class="sk-body"><div class="skeleton sk-title"></div><div class="skeleton sk-line"></div></div><div class="skeleton sk-footer"></div></div>
+          <div class="class-card-skeleton"><div class="skeleton sk-header"></div><div class="sk-body"><div class="skeleton sk-title"></div><div class="skeleton sk-line"></div></div><div class="skeleton sk-footer"></div></div>
+          <div class="class-card-skeleton"><div class="skeleton sk-header"></div><div class="sk-body"><div class="skeleton sk-title"></div><div class="skeleton sk-line"></div></div><div class="skeleton sk-footer"></div></div>
+        </div>
+        <div class="mt-lg text-center section-reveal">
+          <button class="btn btn-outline" data-page="classes">VIEW FULL SCHEDULE →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Torn divider -->
+    <div class="torn-divider" aria-hidden="true"></div>
+
+    <!-- About Instructor Teaser -->
+    <section class="page-section bg-alt" aria-labelledby="home-about-heading">
+      <div class="container section-content">
+        <div class="section-reveal">
+          <p class="section-label">The Guide</p>
+          <h2 class="section-heading ink-bleed channel-split" id="home-about-heading">Meet Priya Chaudhary</h2>
+        </div>
+        <div class="about-collage mt-lg">
+          <!-- Photo side -->
+          <div class="section-reveal">
+            <div class="about-photo-frame halftone">
+              <div style="width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--color-surface) 0%,var(--color-primary-highlight) 40%,var(--color-secondary-highlight) 100%);display:flex;align-items:center;justify-content:center;font-size:8rem;user-select:none" aria-label="Instructor photo placeholder">
+                🌸
+              </div>
+              <div class="about-photo-annotation b1">B1 · Rishikesh</div>
+              <div class="about-photo-annotation l2">L2 · Yin Certified</div>
+            </div>
+          </div>
+          <!-- Text side -->
+          <div class="section-reveal">
+            <blockquote class="about-quote ink-bleed">"THE BODY KNOWS WHAT THE MIND FORGETS"</blockquote>
+            <p class="about-bio mt-lg">
+              Priya Chaudhary found yoga during a period of profound stillness — and never looked back. 
+              Trained in Rishikesh under classical Hatha lineages, she holds a 500hr RYT certification 
+              and additional training in Yin, Restorative, and Pranayama.
+            </p>
+            <p class="about-bio mt-md">
+              Her classes are raw, direct, and deeply humane. She believes yoga is not performance — 
+              it is investigation. Each session is an invitation to arrive, exactly as you are.
+            </p>
+            <div class="about-certs">
+              <span class="badge badge-level">500hr RYT</span>
+              <span class="badge badge-available">Yin Certified</span>
+              <span class="badge badge-pending">YACEP Provider</span>
+              <span class="badge badge-level">Pranayama Adv.</span>
+            </div>
+            <div class="hero-cta-group mt-lg">
+              <button class="btn btn-primary glitch-btn" data-page="book">BOOK WITH PRIYA</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Torn divider -->
+    <div class="torn-divider" aria-hidden="true"></div>
+
+    <!-- Testimonials / Quote Row -->
+    <section class="page-section" aria-labelledby="home-testimonials-heading">
+      <div class="container section-content">
+        <div class="section-reveal">
+          <p class="section-label">The Practice</p>
+          <h2 class="section-heading ink-bleed channel-split" id="home-testimonials-heading">Words From The Mat</h2>
+        </div>
+        <div class="grid-3 mt-lg">
+          <blockquote class="section-reveal" style="background:var(--color-surface);padding:var(--space-lg);border-left:3px solid var(--color-primary);font-style:italic;font-size:0.9rem;line-height:1.8">
+            "Priya's Yin class completely reset my nervous system. I left feeling like I'd slept for ten hours."
+            <footer style="margin-top:var(--space-sm);font-style:normal"><cite class="tech-text">— Anjali M., Mumbai</cite></footer>
+          </blockquote>
+          <blockquote class="section-reveal" style="background:var(--color-surface);padding:var(--space-lg);border-left:3px solid var(--color-secondary);font-style:italic;font-size:0.9rem;line-height:1.8">
+            "The Vinyasa Flow is intense, intentional, and somehow meditative. Unlike any class I've taken."
+            <footer style="margin-top:var(--space-sm);font-style:normal"><cite class="tech-text">— Rahul S., Bangalore</cite></footer>
+          </blockquote>
+          <blockquote class="section-reveal" style="background:var(--color-surface);padding:var(--space-lg);border-left:3px solid var(--color-gold);font-style:italic;font-size:0.9rem;line-height:1.8">
+            "I came for the flexibility. I stayed for the clarity. Priya's cues are surgical and compassionate."
+            <footer style="margin-top:var(--space-sm);font-style:normal"><cite class="tech-text">— Dev P., Delhi</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <div class="torn-bottom" style="background:var(--color-text);padding:var(--space-xl) 0;margin-top:var(--space-xl);position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;font-size:20rem;font-weight:900;color:rgba(242,235,218,0.02);display:flex;align-items:center;justify-content:center;user-select:none;pointer-events:none" aria-hidden="true">ॐ</div>
+      <div class="container text-center section-reveal" style="position:relative;z-index:1">
+        <p class="tech-text" style="color:rgba(242,235,218,0.5);margin-bottom:var(--space-md)">— Begin Your Practice —</p>
+        <h2 class="section-heading jitter" style="color:var(--color-bg);font-size:clamp(2rem,5vw,4rem);margin-bottom:var(--space-lg)">READY TO FLOW?</h2>
+        <div class="flex justify-center gap-md flex-wrap">
+          <button class="btn btn-primary btn-lg glitch-btn" data-page="book">BOOK A CLASS NOW</button>
+          <button class="btn btn-sm" style="background:transparent;border:2px solid rgba(242,235,218,0.3);color:var(--color-bg)" data-page="classes">VIEW SCHEDULE</button>
+        </div>
+      </div>
+    </div>
+
+  </section><!-- /#page-home -->
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE: CLASSES (#classes)
+       ══════════════════════════════════════════════════════ -->
+  <section id="page-classes" class="page" aria-label="Class Schedule">
+    <div class="page-section">
+      <div class="section-watermark top-right" aria-hidden="true">
+        <object data="assets/botanical-mandala.svg" type="image/svg+xml"></object>
+      </div>
+      <div class="container section-content">
+        <p class="section-label">The Schedule</p>
+        <h1 class="section-heading ink-bleed channel-split mb-md">Class Schedule</h1>
+        <p class="text-muted mb-lg" style="max-width:540px;font-size:0.9rem">
+          All classes with Priya Chaudhary. Slots are limited — book early. Green = available. Red = full.
+        </p>
+
+        <!-- Filters -->
+        <div class="filters-bar" role="group" aria-label="Filter classes">
+          <div class="filter-group">
+            <div class="filter-group-label">Day</div>
+            <div class="filter-chips" id="filter-day" role="list" aria-label="Filter by day"></div>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-label">Type</div>
+            <div class="filter-chips" id="filter-type" role="list" aria-label="Filter by type"></div>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-label">Level</div>
+            <div class="filter-chips" id="filter-difficulty" role="list" aria-label="Filter by difficulty"></div>
+          </div>
+        </div>
+
+        <!-- Classes Grid -->
+        <div class="grid-3" id="classes-grid" aria-live="polite" aria-label="Class listings">
+          <!-- Rendered by classes.js -->
+        </div>
+      </div>
+    </div>
+  </section><!-- /#page-classes -->
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE: BOOK (#book)
+       ══════════════════════════════════════════════════════ -->
+  <section id="page-book" class="page" aria-label="Book a Class">
+    <div class="page-section">
+      <div class="container" style="max-width:780px">
+        <p class="section-label">Reserve Your Spot</p>
+        <h1 class="section-heading ink-bleed mb-lg">Book a Class</h1>
+
+        <!-- Step indicators -->
+        <div class="booking-steps" role="tablist" aria-label="Booking steps">
+          <div class="booking-step-indicator active" role="tab" aria-selected="true">
+            <div class="booking-step-num">01</div>
+            <span class="booking-step-label">Pick Slot</span>
+          </div>
+          <div class="booking-step-connector"></div>
+          <div class="booking-step-indicator" role="tab" aria-selected="false">
+            <div class="booking-step-num">02</div>
+            <span class="booking-step-label">Your Details</span>
+          </div>
+          <div class="booking-step-connector"></div>
+          <div class="booking-step-indicator" role="tab" aria-selected="false">
+            <div class="booking-step-num">03</div>
+            <span class="booking-step-label">Confirm</span>
+          </div>
+        </div>
+
+        <!-- Step panels -->
+        <div id="booking-panels-wrapper">
+          <!-- Step 1 -->
+          <div class="booking-step-panel" id="booking-step-panel-1">
+            <div id="booking-step1-content"><!-- Rendered by booking.js --></div>
+          </div>
+          <!-- Step 2 -->
+          <div class="booking-step-panel hidden" id="booking-step-panel-2">
+            <div id="booking-step2-content"><!-- Rendered by booking.js --></div>
+          </div>
+          <!-- Step 3 -->
+          <div class="booking-step-panel hidden" id="booking-step-panel-3">
+            <div id="booking-step3-content"><!-- Rendered by booking.js --></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section><!-- /#page-book -->
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE: LOGIN (#login)
+       ══════════════════════════════════════════════════════ -->
+  <section id="page-login" class="page" aria-label="Login">
+    <div class="auth-page">
+      <div class="auth-card">
+        <!-- Background Sanskrit -->
+        <div style="position:absolute;top:0;right:0;font-size:8rem;color:var(--color-primary);opacity:0.05;line-height:1;pointer-events:none;user-select:none" aria-hidden="true">ॐ</div>
+
+        <h1 class="auth-title ink-bleed">ENTER</h1>
+        <p class="auth-subtitle">Your practice awaits. Sign in to book classes and track your journey.</p>
+
+        <!-- Tabs -->
+        <div class="auth-tabs" role="tablist">
+          <button class="auth-tab active" id="tab-login" role="tab" aria-selected="true" aria-controls="login-form">Sign In</button>
+          <button class="auth-tab" id="tab-signup" role="tab" aria-selected="false" aria-controls="signup-form">Create Account</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" role="tabpanel" aria-labelledby="tab-login" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="login-email">Email</label>
+            <input class="form-input" type="email" id="login-email" autocomplete="email" placeholder="you@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="login-password">Password</label>
+            <input class="form-input" type="password" id="login-password" autocomplete="current-password" placeholder="••••••••" required>
+          </div>
+          <span class="form-error" id="login-error" role="alert"></span>
+          <div class="mt-md">
+            <button type="submit" class="btn btn-primary btn-full glitch-btn">SIGN IN</button>
+          </div>
+          <p class="text-muted text-xs mt-sm" style="text-align:right">
+            <span style="cursor:pointer;color:var(--color-primary);text-decoration:underline">Forgot password?</span>
+          </p>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" class="hidden" role="tabpanel" aria-labelledby="tab-signup" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="signup-name">Full Name</label>
+            <input class="form-input" type="text" id="signup-name" autocomplete="name" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-email">Email</label>
+            <input class="form-input" type="email" id="signup-email" autocomplete="email" placeholder="you@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-password">Password</label>
+            <input class="form-input" type="password" id="signup-password" autocomplete="new-password" placeholder="6+ characters" required>
+          </div>
+          <span class="form-error" id="signup-error" role="alert"></span>
+          <div class="mt-md">
+            <button type="submit" class="btn btn-primary btn-full glitch-btn">CREATE ACCOUNT</button>
+          </div>
+        </form>
+
+        <!-- Google -->
+        <div class="auth-divider"><span class="auth-divider-line"></span><span class="auth-divider-text">or</span><span class="auth-divider-line"></span></div>
+        <button class="btn-google btn-google-demo" type="button" aria-label="Sign in with Google">
+          <span class="btn-google-icon">G</span> CONTINUE WITH GOOGLE
+        </button>
+
+        <p class="auth-switch mt-md">
+          <span class="tech-text">Admin login? Use <strong>admin@kartavya.com</strong></span>
+        </p>
+      </div>
+    </div>
+  </section><!-- /#page-login -->
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE: DASHBOARD (#dashboard)
+       ══════════════════════════════════════════════════════ -->
+  <section id="page-dashboard" class="page" aria-label="My Dashboard">
+    <div class="page-section">
+      <div class="container">
+        <p class="section-label">Your Space</p>
+        <h1 class="section-heading ink-bleed mb-lg">My Dashboard</h1>
+
+        <div class="dashboard-grid">
+          <!-- Left: Bookings -->
+          <div>
+            <div class="dashboard-card">
+              <div class="dashboard-card-title">
+                Upcoming Bookings
+                <span class="badge badge-pending" id="dash-total-bookings" style="float:right">0</span>
+              </div>
+              <div id="dash-bookings-list" aria-live="polite">
+                <!-- Rendered by dashboard.js -->
+                <div class="empty-state">
+                  <div class="empty-state-icon">🧘</div>
+                  <p class="empty-state-desc">Loading your bookings…</p>
+                </div>
+              </div>
+              <div class="mt-md">
+                <button class="btn btn-primary btn-sm glitch-btn" data-page="book">+ BOOK A CLASS</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Profile + Notifs -->
+          <div style="display:flex;flex-direction:column;gap:var(--space-lg)">
+            <!-- Profile -->
+            <div class="dashboard-card">
+              <div class="dashboard-card-title">My Profile</div>
+              <div class="flex items-center gap-md mb-md">
+                <div class="profile-avatar" id="dash-avatar">U</div>
+                <div>
+                  <div style="font-family:var(--font-display);font-size:1.1rem;text-transform:uppercase" id="dash-user-name">—</div>
+                  <div class="tech-text" id="dash-user-email">—</div>
+                </div>
+              </div>
+              <div id="dash-profile-fields"><!-- Rendered by dashboard.js --></div>
+            </div>
+
+            <!-- Notification Prefs -->
+            <div class="dashboard-card">
+              <div class="dashboard-card-title">Notification Preferences</div>
+              <div id="dash-notif-prefs"><!-- Rendered by dashboard.js --></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- /#page-dashboard -->
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE: ADMIN (#admin)
+       ══════════════════════════════════════════════════════ -->
+  <section id="page-admin" class="page" aria-label="Admin Panel">
+    <div class="admin-layout">
+
+      <!-- Sidebar -->
+      <aside class="admin-sidebar" aria-label="Admin navigation">
+        <div class="admin-sidebar-title">Admin Panel</div>
+        <ul class="admin-nav" role="list">
+          <li class="admin-nav-item active" data-section="overview" onclick="KartavyaAdmin.switchSection('overview')" role="listitem" tabindex="0" aria-label="Overview">
+            <span class="admin-nav-item-icon">◈</span> Overview
+          </li>
+          <li class="admin-nav-item" data-section="visits" onclick="KartavyaAdmin.switchSection('visits')" role="listitem" tabindex="0">
+            <span class="admin-nav-item-icon">◉</span> Site Visits
+          </li>
+          <li class="admin-nav-item" data-section="bookings" onclick="KartavyaAdmin.switchSection('bookings')" role="listitem" tabindex="0">
+            <span class="admin-nav-item-icon">◎</span> All Bookings
+          </li>
+          <li class="admin-nav-item" data-section="schedule" onclick="KartavyaAdmin.switchSection('schedule')" role="listitem" tabindex="0">
+            <span class="admin-nav-item-icon">◷</span> Schedule Mgr
+          </li>
+          <li class="admin-nav-item" data-section="meetings" onclick="KartavyaAdmin.switchSection('meetings')" role="listitem" tabindex="0">
+            <span class="admin-nav-item-icon">◌</span> Meetings
+          </li>
+          <li class="admin-nav-item" data-section="push" onclick="KartavyaAdmin.switchSection('push')" role="listitem" tabindex="0">
+            <span class="admin-nav-item-icon">◆</span> Push Notifs
+          </li>
+        </ul>
+        <div style="padding:var(--space-md);border-top:1px solid var(--border-color);margin-top:var(--space-lg)">
+          <div class="tech-text" style="margin-bottom:0.3rem">Logged in as</div>
+          <div style="font-size:0.82rem;font-weight:700" id="admin-user-name">—</div>
+        </div>
+      </aside>
+
+      <!-- Main content area -->
+      <div class="admin-main">
+
+        <!-- ── OVERVIEW ── -->
+        <div class="admin-section active" id="admin-overview">
+          <h2 class="section-heading ink-bleed mb-lg">Overview</h2>
+          <div class="kpi-grid" id="admin-kpi-grid">
+            <!-- Rendered by admin.js -->
+          </div>
+          <div class="chart-container mt-lg">
+            <div class="chart-title">Visitors — Last 14 Days</div>
+            <div class="chart-wrapper"><canvas id="overview-visitor-chart" aria-label="Visitor chart"></canvas></div>
+          </div>
+          <div class="mt-lg">
+            <div class="chart-title">Recent Bookings</div>
+            <div id="admin-overview-bookings"><!-- Rendered by admin.js --></div>
+          </div>
+        </div>
+
+        <!-- ── SITE VISITS ── -->
+        <div class="admin-section" id="admin-visits">
+          <h2 class="section-heading ink-bleed mb-lg">Site Visits</h2>
+          <div class="grid-2">
+            <div class="chart-container">
+              <div class="chart-title">Daily Visitors (30 Days)</div>
+              <div class="chart-wrapper"><canvas id="visitor-line-chart" aria-label="Daily visitors line chart"></canvas></div>
+            </div>
+            <div class="chart-container">
+              <div class="chart-title">Top Pages</div>
+              <div class="chart-wrapper"><canvas id="visitor-bar-chart" aria-label="Top pages bar chart"></canvas></div>
+            </div>
+          </div>
+          <div class="chart-container mt-lg">
+            <div class="chart-title" style="display:flex;align-items:center;gap:0.5rem">
+              Recent Visitors
+              <span class="slot-dot pulse-dot" style="margin-left:0.3rem;background:var(--color-secondary)"></span>
+              <span class="tech-text" style="font-size:0.62rem">LIVE</span>
+            </div>
+            <div id="admin-visitor-table" aria-live="polite"><!-- Rendered by admin.js --></div>
+          </div>
+        </div>
+
+        <!-- ── ALL BOOKINGS ── -->
+        <div class="admin-section" id="admin-bookings">
+          <h2 class="section-heading ink-bleed mb-lg">All Bookings</h2>
+          <div id="admin-bookings-table" aria-live="polite"><!-- Rendered by admin.js --></div>
+        </div>
+
+        <!-- ── SCHEDULE MANAGER ── -->
+        <div class="admin-section" id="admin-schedule">
+          <h2 class="section-heading ink-bleed mb-lg">Schedule Manager</h2>
+
+          <!-- Add new slot form -->
+          <details style="margin-bottom:var(--space-lg)">
+            <summary class="btn btn-outline btn-sm" style="cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem">+ ADD NEW SLOT</summary>
+            <form class="admin-form" id="admin-add-slot-form" style="margin-top:var(--space-md);padding:var(--space-md);background:var(--color-surface)" onsubmit="event.preventDefault();KartavyaApp.showToast('Slot added! (Connect Firestore to persist)','success');this.reset()">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="ns-class">Class</label>
+                  <select class="form-select" id="ns-class">
+                    <option value="">Select class…</option>
+                    <option>Vinyasa Flow</option>
+                    <option>Hatha Yoga</option>
+                    <option>Yin Yoga</option>
+                    <option>Restorative</option>
+                    <option>Pranayama</option>
+                    <option>Morning Meditation</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="ns-date">Date</label>
+                  <input class="form-input" type="date" id="ns-date">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="ns-start">Start Time</label>
+                  <input class="form-input" type="time" id="ns-start">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="ns-capacity">Max Capacity</label>
+                  <input class="form-input" type="number" id="ns-capacity" value="15" min="1" max="50">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm">SAVE SLOT</button>
+            </form>
+          </details>
+
+          <div id="admin-schedule-list" aria-live="polite"><!-- Rendered by admin.js --></div>
+        </div>
+
+        <!-- ── MEETINGS ── -->
+        <div class="admin-section" id="admin-meetings">
+          <h2 class="section-heading ink-bleed mb-lg">Meeting Requests</h2>
+          <div id="admin-meetings-list" aria-live="polite"><!-- Rendered by admin.js --></div>
+        </div>
+
+        <!-- ── PUSH NOTIFICATIONS ── -->
+        <div class="admin-section" id="admin-push">
+          <h2 class="section-heading ink-bleed mb-lg">Push Notifications</h2>
+          <div style="max-width:560px">
+            <form id="push-notif-form" class="admin-form">
+              <div class="form-group">
+                <label class="form-label" for="pn-title">Notification Title</label>
+                <input class="form-input" type="text" id="pn-title" placeholder="e.g. Class rescheduled" required maxlength="80">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="pn-body">Message Body</label>
+                <textarea class="form-textarea" id="pn-body" placeholder="Write your notification message here…" required maxlength="300"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Send To</label>
+                <div class="notif-audience-opts">
+                  <label class="notif-audience-opt"><input type="radio" name="pn-audience" value="all" checked> All Users</label>
+                  <label class="notif-audience-opt"><input type="radio" name="pn-audience" value="vinyasa"> Vinyasa Attendees</label>
+                  <label class="notif-audience-opt"><input type="radio" name="pn-audience" value="hatha"> Hatha Attendees</label>
+                  <label class="notif-audience-opt"><input type="radio" name="pn-audience" value="yin"> Yin Attendees</label>
+                </div>
+              </div>
+              <div class="admin-form-actions">
+                <button type="submit" class="btn btn-primary glitch-btn">SEND NOTIFICATION</button>
+                <button type="reset" class="btn btn-outline">CLEAR</button>
+              </div>
+            </form>
+
+            <!-- Sent log -->
+            <div class="mt-lg">
+              <div class="chart-title">Sent History</div>
+              <div id="push-log" style="min-height:60px;background:var(--color-surface);padding:var(--space-md)">
+                <p class="tech-text" style="opacity:0.5">No notifications sent yet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /admin-main -->
+    </div><!-- /admin-layout -->
+  </section><!-- /#page-admin -->
+
+</main><!-- /#main-content -->
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Col 1: Brand -->
+      <div>
+        <div class="footer-logo">
+          <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+            <path d="M50 4 L58 6 L65 4 L73 9 L80 14 L86 21 L91 29 L94 38 L95 48 L93 58 L88 67 L81 75 L72 81 L62 86 L51 88 L41 87 L31 83 L22 76 L15 67 L10 57 L7 46 L8 36 L12 26 L18 18 L26 11 L34 7 L43 5 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M50 70 L45 53 L50 33 L55 53 Z M50 70 L34 58 L28 43 L44 55 Z M50 70 L66 58 L72 43 L56 55 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M50 70 L50 84 M50 78 L34 73 L38 82 M50 78 L66 73 L62 82" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/>
+          </svg>
+          <div class="footer-logo-title">KARTA<span>VYA</span><br><small style="font-size:0.55rem;opacity:0.5;letter-spacing:0.15em;font-family:var(--font-body)">YOGA &amp; WELLNESS</small></div>
+        </div>
+        <p class="footer-desc">Ancient wisdom. Raw earth energy. Rooted in classical yoga lineages, practiced with honesty and intention.</p>
+        <div class="footer-social" aria-label="Social links">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">IG</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="YouTube">YT</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+
+      <!-- Col 2: Quick Links -->
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links" role="list">
+          <li><a class="footer-link" data-page="home"    href="#home">Home</a></li>
+          <li><a class="footer-link" data-page="classes" href="#classes">Class Schedule</a></li>
+          <li><a class="footer-link" data-page="book"    href="#book">Book a Class</a></li>
+          <li><a class="footer-link" data-page="dashboard" href="#dashboard">My Bookings</a></li>
+          <li><a class="footer-link" data-page="login"   href="#login">Sign In</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Contact -->
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">✉</span>
+          <a href="mailto:priya@kartavyayoga.com" target="_blank" rel="noopener" style="color:inherit">priya@kartavyayoga.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">☎</span>
+          <span>+91 98765 43210</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">◎</span>
+          <span>Online &amp; In-Studio<br>New Delhi, India</span>
+        </div>
+        <div class="mt-md">
+          <div class="footer-col-title" style="margin-bottom:var(--space-sm)">Classes This Week</div>
+          <div class="tech-text" style="line-height:2;color:rgba(232,223,200,0.6)">
+            MON – FRI &nbsp;·&nbsp; 06:00–19:00<br>
+            SAT – SUN &nbsp;·&nbsp; 09:00–12:00<br>
+            Multiple sessions daily
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <span>© 2026 Kartavya Yoga · Priya Chaudhary · All Rights Reserved</span>
+      <span style="color:rgba(232,223,200,0.25)">सत्यं शिवं सुन्दरम्</span>
+      <span>Built with intention</span>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<!-- ============================================================
+     SCRIPTS (load order matters)
+     ============================================================ -->
+<script src="js/data.js"></script>
+<script src="js/classes.js"></script>
+<script src="js/booking.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
