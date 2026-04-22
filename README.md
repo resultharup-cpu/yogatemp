@@ -1,0 +1,2 @@
+# yogatemp
+Yoga Website Static
